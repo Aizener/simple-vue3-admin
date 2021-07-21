@@ -10,12 +10,13 @@
         ></card-panel>
       </div>
     </div>
-    <div class="line-charts"></div>
+    <line-charts></line-charts>
   </div>
 </template>
 
 <script lang="ts">
 import CardPanel from '@/components/card-panel.vue'
+import LineCharts from './line-charts.vue'
 import { getCurrentInstance, onMounted, reactive } from 'vue'
 
 type CardType = {
@@ -51,75 +52,77 @@ const getCards = () => {
 
 export default {
   components: {
-    CardPanel
+    CardPanel,
+    LineCharts
   },
   setup() {
     const cards = getCards()
     const { proxy }: any = getCurrentInstance()
-    
+    const options = {
+      color: ['rgb(246, 81, 112)', 'rgb(0, 138, 205)'],
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['期望数量', '实际数量'],
+        top: 15
+      },
+      xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        axisTick: {
+          show: false
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'rgb(0, 138, 205)'
+          }
+        }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: {
+          lineStyle: {
+            color: 'rgb(0, 138, 205)'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#eee'
+          }
+        },
+        splitArea: {
+          show: true,
+          areaStyle: {
+            color: ['rgb(249, 249, 249)', '#fff']
+          }
+        }
+      },
+      grid: {
+        left: 80,
+        top: 50,
+        right: 50,
+        bottom: 50,
+      },
+      series: [{
+        name: '期望数量',
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+      }, {
+        name: '实际数量',
+        data: [520, 332, 601, 134, 1190, 1390, 1220],
+        type: 'line',
+        smooth: true
+      }]
+    }
+
     onMounted(() => {
-      const lineChart = proxy.$echarts.init(document.querySelector('.line-charts'))
-      lineChart.setOption({
-        color: ['rgb(246, 81, 112)', 'rgb(0, 138, 205)'],
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['期望数量', '实际数量'],
-          top: 15
-        },
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: 'rgb(0, 138, 205)'
-            }
-          }
-        },
-        yAxis: {
-          type: 'value',
-          axisLine: {
-            lineStyle: {
-              color: 'rgb(0, 138, 205)'
-            }
-          },
-          axisTick: {
-            show: false
-          },
-          splitLine: {
-            lineStyle: {
-              color: '#eee'
-            }
-          },
-          splitArea: {
-            show: true,
-            areaStyle: {
-              color: ['rgb(249, 249, 249)', '#fff']
-            }
-          }
-        },
-        grid: {
-          left: 80,
-          top: 50,
-          right: 50,
-          bottom: 50,
-        },
-        series: [{
-          name: '期望数量',
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line',
-          smooth: true
-        }, {
-          name: '实际数量',
-          data: [520, 332, 601, 134, 1190, 1390, 1220],
-          type: 'line',
-          smooth: true
-        }]
-      })
+      const lineChart = proxy.$echarts.init(document.getElementById('line-charts'))
+      lineChart.setOption(options)
     })
 
     return {
@@ -132,8 +135,8 @@ export default {
 <style lang="scss" scoped>
 .dashboard {
   width: 100%;
-  min-height: 100%;
-  overflow: hidden; 
+  height: 100vh;
+  overflow: hidden;
   background-color: #f0f2f5;
   .panel-wrapper {
     display: flex;
@@ -147,12 +150,6 @@ export default {
         margin-right: 0;
       }
     }
-  }
-  .line-charts {
-    height: 300px;
-    margin: 20px;
-    background: #fff;
-    box-shadow: 0 0 5px #ccc;
   }
 }
 </style>
