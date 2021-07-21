@@ -32,7 +32,7 @@ export default {
 
     const handleChange = (label: string) => {
       store.dispatch('user/login', { token: tokens[label] }).then(() => {
-        location.href = location.origin
+        location.href = location.origin + location.pathname
       })
     }
 
