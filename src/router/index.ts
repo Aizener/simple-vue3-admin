@@ -13,7 +13,7 @@ const router = _createRouter()
 
 export function resetRouter () {
   const newRouter = _createRouter()
-  router.options.routes = newRouter.options.routes.map(item => item)
+  router.options.routes = newRouter.options.routes
 }
 
 export default router
