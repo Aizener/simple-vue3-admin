@@ -12,7 +12,8 @@ interface StateType {
   navbarTitle: string,
   localeLang: string,
   routes: Array<RouteRecordRaw>,
-  menus: menuType
+  menus: menuType,
+  theme: string
 }
 
 export default {
@@ -22,7 +23,8 @@ export default {
     navbarTitle: '',
     localeLang: 'zh-cn',
     routes: router.options.routes,
-    menus: {}
+    menus: {},
+    theme: 'default'
   },
   mutations: {
     TOGGLE_SLIDEBAR(state: StateType, value: boolean) {
@@ -43,6 +45,9 @@ export default {
     RESET_ROUTER(state: StateType) {
       resetRouter()
       state.routes = router.options.routes
+    },
+    UPDATE_THEME(state: StateType, value: string) {
+      state.theme = value
     }
   },
   actions: {
@@ -61,6 +66,9 @@ export default {
     },
     resetRouter({ commit }: any) {
       commit('RESET_ROUTER')
+    },
+    updateTheme({ commit }: any, value: string) {
+      commit('UPDATE_THEME', value)
     }
   }
 }

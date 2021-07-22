@@ -15,10 +15,12 @@
 </template>
 
 <script lang="ts">
-import { ref, PropType, toRefs, computed } from 'vue'
+import { ref, PropType, toRefs, computed, defineComponent, watch } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
+import themes from '@/utils/themes'
+import { useStore } from 'vuex'
 
-export default {
+export default defineComponent({
   props: {
     item: {
       type: Object as PropType<RouteRecordRaw>,
@@ -31,11 +33,18 @@ export default {
   },
   setup(props: any) {
     const item = props.item
+    const store = useStore()
+    const { theme } = toRefs(store.state.app)
+    const tm = ref(themes[theme.value])
     const { activeIndex } = toRefs(props)
+
+    watch(() => store.state.app.theme, newVal => {
+      tm.value = themes[newVal]
+    })
 
     const fillColor = computed(() => {
       const path = item.children ? item.children[0].path : item.path
-      return activeIndex.value === path ? '#409EFF': '#BFCBD9'
+      return activeIndex.value === path ? tm.value.slideBarTextAColor : '#BFCBD9'
     })
 
     const getIndex = () => {
@@ -48,7 +57,7 @@ export default {
       getIndex
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

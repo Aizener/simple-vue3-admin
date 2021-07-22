@@ -1,5 +1,5 @@
 <template>
-  <el-container class="wrapper">
+  <el-container class="wrapper" :style="currStyle">
     <el-aside class="wrapper-aside">
       <nav-menu></nav-menu>
     </el-aside>
@@ -15,15 +15,40 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import NavMenu from './components/nav-menu/index.vue'
 import TopNavbar from './components/top-navbar/index.vue'
 
-export default {
+import { useStore } from 'vuex'
+import themes, { Theme } from '@/utils/themes'
+
+export default defineComponent({
   components: {
     NavMenu,
     TopNavbar
+  },
+  setup() {
+    const store = useStore()
+    const { theme } = toRefs(store.state.app)
+
+    const tm = ref<Theme>(themes[theme.value])
+
+    watch(() => store.state.app.theme, newVal => {
+      tm.value = themes[theme.value]
+    })
+
+    const currStyle = computed(() => {
+      return {
+        '--theme-bar-toggle-bg': tm.value.slideBarToggleBg,
+        '--theme-navbar-bg': tm.value.navbarBackground
+      }
+    })
+
+    return {
+      currStyle
+    }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

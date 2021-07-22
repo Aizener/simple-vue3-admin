@@ -16,6 +16,7 @@ export default {
   slideBarAbout: '关于',
   slideBarInternational: '国际化',
   slideBarMock: '数据模拟',
+  slideBarTheme: '主题',
   slideBarError: '错误页面',
   slideBarNotFound: '404',
   slideBarPermission: '权限管理',

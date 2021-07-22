@@ -16,6 +16,7 @@ export default {
   slideBarAbout: 'About',
   slideBarInternational: 'International',
   slideBarMock: 'Mock',
+  slideBarTheme: 'Theme',
   slideBarError: 'Error Pages',
   slideBarNotFound: '404',
   slideBarPermission: 'Permission',

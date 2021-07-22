@@ -212,6 +212,21 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/theme',
+    redirect: '/theme/index',
+    component: Layout,
+    meta: {
+      title: 'slideBarTheme',
+      icon: 'icon-theme'
+    },
+    children: [
+      {
+        path: '/theme/index',
+        component: () => import('@/views/theme/index.vue')
+      }
+    ]
+  },
+  {
     path: '/login',
     component: Login
   },

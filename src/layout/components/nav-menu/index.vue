@@ -1,9 +1,10 @@
 <template>
   <el-menu
     class="menu"
-    background-color="#2D4156"
-    text-color="#BFCBD9"
-    active-text-color="#409EFF"
+    v-if="theme"
+    :background-color="theme.slideBarBackground"
+    :text-color="theme.slideBarTextColor"
+    :active-text-color="theme.slideBarTextAColor"
     :default-active="activeIndex"
     :collapse="isCollapse"
     @select="selectItem"
@@ -15,17 +16,13 @@
 </template>
 
 <script lang="ts">
-import { nextTick, reactive, ref, toRefs, watch } from 'vue'
+import { defineComponent, nextTick, reactive, ref, toRefs, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import themes from '@/utils/themes'
 import SlideItem from './components/slide-item.vue'
 
-interface StateType {
-  menuRefs: any[],
-  activeIndex: string
-}
-
-export default {
+export default defineComponent({
   components: {
     SlideItem
   },
@@ -33,13 +30,15 @@ export default {
     const router = useRouter()
     const route = useRoute()
     const store = useStore()
-    const { routes } = toRefs(store.state.app)
-
-    const { isCollapse } = toRefs(store.state.app)
-
-    const state: StateType = reactive({
+    const { routes, isCollapse, theme } = toRefs(store.state.app)
+    const state = reactive({
       menuRefs: [],
-      activeIndex: '/dashboard'
+      activeIndex: '/dashboard',
+      theme: themes[theme.value]
+    })
+
+    watch(() => store.state.app.theme, newVal => {
+      state.theme = themes[newVal]
     })
 
     const selectItem = (index: string) => {
@@ -70,7 +69,7 @@ export default {
       selectItem
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
@@ -83,7 +82,7 @@ export default {
 }
 .submenu {
   & /deep/ .el-menu-item, & /deep/ .inner-submenu .el-submenu__title {
-    background-color: #1f2d3d !important;
+    background-color: var(--theme-bar-toggle-bg) !important;
   }
 }
 </style>

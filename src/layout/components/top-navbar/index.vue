@@ -79,7 +79,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
+  background: var(--theme-navbar-bg);
   box-shadow: 0 1px 4px #ccc;
   position: relative;
   z-index: 1;

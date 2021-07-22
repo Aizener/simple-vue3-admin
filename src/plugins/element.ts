@@ -1,6 +1,6 @@
 import {
   ElAside, ElButton, ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup, ElSubmenu, ElTooltip,
-  ElRadio, ElInput, ElForm, ElFormItem, ElMessage, ElPopover, ElMessageBox, ElRadioButton, ElRadioGroup
+  ElRadio, ElInput, ElForm, ElFormItem, ElMessage, ElPopover, ElMessageBox, ElRadioButton, ElRadioGroup, ElColorPicker
 } from 'element-plus'
 import { App } from 'vue'
 
@@ -25,4 +25,5 @@ export default (app: App) => {
     .use(ElMessage)
     .use(ElPopover)
     .use(ElMessageBox)
+    .use(ElColorPicker)
 }
