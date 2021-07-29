@@ -78,6 +78,10 @@ export default {
   border-radius: 10px;
   width: 128px;
   height: 128px;
+  @media screen and (max-width: 767px) {
+    width: 108px;
+    height: 108px;
+  }
   margin-right: 30px;
   display: flex;
   justify-content: center;

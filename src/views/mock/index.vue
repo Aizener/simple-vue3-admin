@@ -132,6 +132,9 @@ export default {
 .mock {
   padding: 30px;
   display: flex;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
   &-title {
     margin: 30px;
     padding: 10px;

@@ -8,7 +8,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .line-charts {
   height: 300px;
   margin: 20px;

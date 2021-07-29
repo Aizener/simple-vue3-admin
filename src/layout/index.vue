@@ -66,7 +66,7 @@ export default defineComponent({
   .el-main {
     padding: 0;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
   }
 }
 </style>

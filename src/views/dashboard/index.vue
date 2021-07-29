@@ -142,9 +142,16 @@ export default {
     display: flex;
     margin: 20px;
     margin-bottom: 0;
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+    }
     .panel-box {
       flex: 1;
       margin-right: 20px;
+      @media screen and (max-width: 767px) {
+        margin-right: 0;
+        margin-top: 15px;
+      }
       height: 108px;
       &:last-child {
         margin-right: 0;

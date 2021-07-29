@@ -5,7 +5,7 @@
       <p>切换语言</p>
     </div>
     <div class="languages">
-      <div>
+      <div class="btns">
         <el-radio v-model="radio" :label="item.key" border size="medium" v-for="(item, idx) in languages" :key="idx" @change="handleChange">{{ item.value }}</el-radio>
       </div>
       <p>
@@ -61,6 +61,14 @@ export default {
   border-radius: 5px;
   width: 50%;
   margin: 50px auto;
+  @media screen and (max-width: 767px) {
+    width: 90%;
+    margin: 10px auto;
+    .btns {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
   .title {
     border-bottom: 1px solid skyblue;
     padding: 15px;
