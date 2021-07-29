@@ -43,10 +43,10 @@ export default defineComponent({
 
     const selectItem = (index: string) => {
       state.activeIndex = index
-      const target = routes.value.find((route: any) => {
-        const routePath = route.children ? route.children[0].path : route.path
-        return routePath === index
+      const target = router.getRoutes().find((route: any) => {
+        return route.path === index
       }) || { meta: null }
+      console.log(target)
       const title = target.meta ? target.meta.title === '首页' ? '' : target.meta.title : ''
       store.dispatch('app/setNavbarTitle', title)
       router.push({ path: index })

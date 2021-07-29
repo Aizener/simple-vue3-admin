@@ -1,6 +1,7 @@
 import {
   ElAside, ElButton, ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup, ElSubmenu, ElTooltip,
-  ElRadio, ElInput, ElForm, ElFormItem, ElMessage, ElPopover, ElMessageBox, ElRadioButton, ElRadioGroup, ElColorPicker
+  ElRadio, ElInput, ElForm, ElFormItem, ElMessage, ElPopover, ElMessageBox, ElRadioButton, ElRadioGroup, ElColorPicker,
+  ElTable, ElTableColumn, ElInfiniteScroll, ElLoading
 } from 'element-plus'
 import { App } from 'vue'
 
@@ -26,4 +27,8 @@ export default (app: App) => {
     .use(ElPopover)
     .use(ElMessageBox)
     .use(ElColorPicker)
+    .use(ElTable)
+    .use(ElTableColumn)
+    .use(ElInfiniteScroll)
+    .use(ElLoading)
 }

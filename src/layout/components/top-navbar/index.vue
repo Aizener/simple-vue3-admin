@@ -3,7 +3,16 @@
     <div class="left">
       <i class="el-icon-s-fold navbar-icon" v-if="!isCollapse" @click="handleCollapse"></i>
       <i class="el-icon-s-unfold navbar-icon" v-else @click="handleCollapse"></i>
-      <p class="top-navbar__title" id="navbar-title" v-if="navbarTitle">{{ $t(`message.slideBarHome`) }}&nbsp;<span v-show="navbarTitle.length">/&nbsp;{{ $t(`message.${navbarTitle}`) }}</span></p>
+      <p
+        class="top-navbar__title"
+        id="navbar-title"
+        v-if="navbarTitle"
+      >
+        {{ $t(`message.slideBarHome`) }}&nbsp;
+        <span v-show="navbarTitle.length">/&nbsp;
+          {{ $t(`message.${navbarTitle}`) }}
+        </span>
+      </p>
     </div>
 
     <div class="navbar-user-info">

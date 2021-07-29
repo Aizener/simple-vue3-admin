@@ -1,13 +1,33 @@
 <template>
-  <el-submenu class="submenu" :index="item.path" v-if="item.children && item.children.length > 1 || (item.meta && item.meta.alwaysShow)">
+  <el-submenu
+    class="submenu"
+    :index="item.path"
+    v-if="item.children && item.children.length > 1 || (item.meta && item.meta.alwaysShow)">
     <template #title>
-      <svg-icon class="icon" :width="14" :height="14" :icon-name="item.meta.icon"></svg-icon>
+      <svg-icon
+        class="icon"
+        :width="14"
+        :height="14"
+        :icon-name="item.meta.icon"
+      ></svg-icon>
       <span>{{ item.meta ?  $t(`message.${item.meta.title}`) : '' }}</span>
     </template>
-    <slide-item class="inner-submenu" v-for="itemChild in item.children" :key="itemChild.path" :activeIndex="activeIndex" :item="itemChild"></slide-item>
+    <slide-item
+      class="inner-submenu"
+      v-for="itemChild in item.children"
+      :key="itemChild.path"
+      :activeIndex="activeIndex"
+      :item="itemChild">
+    </slide-item>
   </el-submenu>
   <el-menu-item :index="getIndex()" v-else>
-    <svg-icon class="icon" :width="14" :height="14" :fillColor="fillColor" v-if="item.meta && item.meta.icon" :icon-name="item.meta.icon"></svg-icon>
+    <svg-icon
+      class="icon"
+      :width="14"
+      :height="14"
+      :fillColor="fillColor"
+      v-if="item.meta && item.meta.icon" :icon-name="item.meta.icon">
+    </svg-icon>
     <template #title>
       <span>{{ item.meta ? $t(`message.${item.meta.title}`) : '' }}</span>
     </template>

@@ -227,6 +227,33 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/tables',
+    redirect: '/tables/table-page',
+    component: Layout,
+    meta: {
+      title: 'slideBarTable',
+      icon: 'icon-theme'
+    },
+    children: [
+      {
+        path: '/tables/table-page',
+        component: () => import('@/views/tables/table-page.vue'),
+        meta: {
+          title: 'slideBarTable1',
+          icon: 'icon-theme'
+        }
+      },
+      {
+        path: '/tables/table-load',
+        component: () => import('@/views/tables/table-load.vue'),
+        meta: {
+          title: 'slideBarTable2',
+          icon: 'icon-theme'
+        }
+      }
+    ]
+  },
+  {
     path: '/login',
     component: Login
   },
