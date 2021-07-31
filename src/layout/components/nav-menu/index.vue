@@ -31,6 +31,7 @@ export default defineComponent({
     const route = useRoute()
     const store = useStore()
     const { routes, isCollapse, theme } = toRefs(store.state.app)
+    const _routes = router.getRoutes()
     const state = reactive({
       menuRefs: [],
       activeIndex: '/dashboard',
@@ -43,10 +44,11 @@ export default defineComponent({
 
     const selectItem = (index: string) => {
       state.activeIndex = index
-      const target = router.getRoutes().find((route: any) => {
-        return route.path === index
+      const paths = index.split('/')
+      const lastPath = paths[paths.length - 1]
+      const target = _routes.find((route: any) => {
+        return lastPath === 'index' ? route.path === '/' + paths[1] : route.path === index
       }) || { meta: null }
-      console.log(target)
       const title = target.meta ? target.meta.title === '首页' ? '' : target.meta.title : ''
       store.dispatch('app/setNavbarTitle', title)
       router.push({ path: index })
@@ -59,6 +61,7 @@ export default defineComponent({
 
     const setPah = (path: string) => {
       state.activeIndex = path
+      selectItem(path)
     }
     setPah(route.path)
     

@@ -232,7 +232,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     meta: {
       title: 'slideBarTable',
-      icon: 'icon-theme'
+      icon: 'icon-table'
     },
     children: [
       {
@@ -240,7 +240,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/tables/table-page.vue'),
         meta: {
           title: 'slideBarTable1',
-          icon: 'icon-theme'
+          icon: 'icon-table'
         }
       },
       {
@@ -248,7 +248,15 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/tables/table-load.vue'),
         meta: {
           title: 'slideBarTable2',
-          icon: 'icon-theme'
+          icon: 'icon-table'
+        }
+      },
+      {
+        path: '/tables/table-drag',
+        component: () => import('@/views/tables/table-drag.vue'),
+        meta: {
+          title: 'slideBarTable3',
+          icon: 'icon-table'
         }
       }
     ]

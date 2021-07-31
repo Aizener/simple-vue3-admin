@@ -20,6 +20,7 @@ export default {
   slideBarTable: 'Table',
   slideBarTable1: 'Basic Table',
   slideBarTable2: 'Loadable table',
+  slideBarTable3: 'Draggable table',
   slideBarError: 'Error Pages',
   slideBarNotFound: '404',
   slideBarPermission: 'Permission',
